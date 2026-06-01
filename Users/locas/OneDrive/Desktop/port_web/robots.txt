@@ -1,0 +1,21 @@
+# Robots.txt for Zaun Tech
+# Allow all crawlers to access the site
+
+User-agent: *
+Allow: /
+
+# Disallow admin and authentication pages
+Disallow: /dashboard.html
+Disallow: /profile.html
+Disallow: /login.html
+Disallow: /register.html
+
+# Disallow private directories
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://zauntech.com/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+# Crawl-delay: 1

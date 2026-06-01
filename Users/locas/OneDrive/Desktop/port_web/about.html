@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e60023" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Zaun Tech — About Us</title>
+    <meta name="description" content="Learn about Zaun Tech - a modern development studio focused on building high-quality mobile and web applications." />
+    <meta name="keywords" content="about, Zaun Tech, company, team, mission" />
+    <meta name="author" content="Zaun Tech" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://zauntech.com/about.html" />
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Zaun Tech — About Us" />
+    <meta property="og:description" content="Learn about Zaun Tech - a modern development studio focused on building high-quality mobile and web applications." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zauntech.com/about.html" />
+    <meta property="og:image" content="https://zauntech.com/og-image.jpg" />
+    <meta property="og:site_name" content="Zaun Tech" />
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Zaun Tech — About Us" />
+    <meta name="twitter:description" content="Learn about Zaun Tech - a modern development studio focused on building high-quality mobile and web applications." />
+    <meta name="twitter:image" content="https://zauntech.com/twitter-image.jpg" />
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        const lang = localStorage.getItem('language') || 'en';
+        document.documentElement.setAttribute('lang', lang);
+        document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a href="index.html" class="brand" data-i18n-key="brand">
+          <img src="images/logo.svg" alt="Zaun Tech Logo" class="brand-logo" />
+          <span>Zaun Tech</span>
+        </a>
+        <div class="header-actions">
+          <div class="lang-picker">
+            <button id="languageToggle" class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false">EN</button>
+            <div id="languageMenu" class="lang-menu" aria-label="Choose language">
+              <button class="lang-option" data-lang="en" type="button">English</button>
+              <button class="lang-option" data-lang="ar" type="button">العربية</button>
+            </div>
+          </div>
+          <button type="button" class="mobile-nav-button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <div class="theme-picker">
+            <input id="themeToggle" class="theme-switch" type="checkbox" aria-label="Switch theme" />
+            <label class="theme-toggle" for="themeToggle">
+              <span class="theme-icon theme-sun">☀️</span>
+              <span class="theme-icon theme-moon">🌙</span>
+            </label>
+          </div>
+          <a href="profile.html" class="header-profile-icon" aria-label="Profile">👤</a>
+        </div>
+      </header>
+
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
+          <span class="toggle-icon">☰</span>
+          <span class="toggle-label" data-i18n-key="navMenu">Menu</span>
+        </button>
+        <div id="nav-links" role="menubar">
+          <a href="index.html" class="nav-link" role="menuitem" aria-label="Home page">
+            <span class="nav-icon" aria-hidden="true">⌂</span>
+            <span class="nav-label" data-i18n-key="navHome">Home</span>
+          </a>
+          <a href="services.html" class="nav-link" role="menuitem" aria-label="Services page">
+            <span class="nav-icon" aria-hidden="true">⚙</span>
+            <span class="nav-label" data-i18n-key="navServices">Services</span>
+          </a>
+          <a href="portfolio.html" class="nav-link" role="menuitem" aria-label="Portfolio page">
+            <span class="nav-icon" aria-hidden="true">🎨</span>
+            <span class="nav-label" data-i18n-key="navPortfolio">Portfolio</span>
+          </a>
+          <a href="about.html" class="nav-link active" role="menuitem" aria-current="page" aria-label="About page">
+            <span class="nav-icon" aria-hidden="true">ℹ</span>
+            <span class="nav-label" data-i18n-key="navAbout">About</span>
+          </a>
+          <a href="faq.html" class="nav-link" role="menuitem" aria-label="FAQ page">
+            <span class="nav-icon" aria-hidden="true">?</span>
+            <span class="nav-label" data-i18n-key="navFAQ">FAQ</span>
+          </a>
+          <a href="dashboard.html" class="nav-link" role="menuitem" aria-label="My project dashboard">
+            <span class="nav-icon" aria-hidden="true">📊</span>
+            <span class="nav-label" data-i18n-key="navDashboard">My project</span>
+          </a>
+          <a href="profile.html" class="nav-link" role="menuitem" aria-label="Profile page">
+            <span class="nav-icon" aria-hidden="true">👤</span>
+            <span class="nav-label" data-i18n-key="navProfile">Profile</span>
+          </a>
+          <a href="contact.html" class="nav-link" role="menuitem" aria-label="Contact page">
+            <span class="nav-icon" aria-hidden="true">✉</span>
+            <span class="nav-label" data-i18n-key="navContact">Contact</span>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label" data-i18n-key="aboutLabel">About</p>
+            <h2 data-i18n-key="aboutHeading">About Zaun Tech</h2>
+          </div>
+          <article class="highlight-card">
+            <p data-i18n-key="aboutText">
+              Zaun Tech is a modern development studio focused on building high-quality mobile and web applications. We specialize in Flutter for cross-platform mobile development and modern web technologies including HTML, CSS, and TypeScript. Our mission is to deliver clean, performant, and scalable solutions that help businesses grow and succeed in the digital world.
+            </p>
+            <div class="chip-row" style="margin-top: 1.5rem;">
+              <span data-i18n-key="aboutValue1">Quality First</span>
+              <span data-i18n-key="aboutValue2">Modern Tech</span>
+              <span data-i18n-key="aboutValue3">Client Focus</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label" data-i18n-key="missionLabel">Mission</p>
+            <h2 data-i18n-key="missionHeading">Our Mission</h2>
+          </div>
+          <article class="highlight-card">
+            <p data-i18n-key="missionText">
+              To empower businesses with cutting-edge technology solutions that drive growth and innovation. We believe in building long-term partnerships with our clients, understanding their unique needs, and delivering solutions that exceed expectations.
+            </p>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label" data-i18n-key="valuesLabel">Values</p>
+            <h2 data-i18n-key="valuesHeading">Our Values</h2>
+          </div>
+          <div class="grid-card">
+            <article class="project-card">
+              <h3 data-i18n-key="value1Title">Quality First</h3>
+              <p data-i18n-key="value1Text">We never compromise on quality. Every line of code is written with care and attention to detail.</p>
+            </article>
+            <article class="project-card">
+              <h3 data-i18n-key="value2Title">Modern Tech</h3>
+              <p data-i18n-key="value2Text">We stay up-to-date with the latest technologies and best practices to deliver modern solutions.</p>
+            </article>
+            <article class="project-card">
+              <h3 data-i18n-key="value3Title">Client Focus</h3>
+              <p data-i18n-key="value3Text">Our clients are at the center of everything we do. We listen, understand, and deliver.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4 data-i18n-key="footerCompany">Company</h4>
+            <ul>
+              <li><a href="about.html" data-i18n-key="footerAbout">About Us</a></li>
+              <li><a href="services.html" data-i18n-key="footerServices">Services</a></li>
+              <li><a href="contact.html" data-i18n-key="footerContact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n-key="footerResources">Resources</h4>
+            <ul>
+              <li><a href="portfolio.html" data-i18n-key="footerPortfolio">Portfolio</a></li>
+              <li><a href="faq.html" data-i18n-key="footerFAQ">FAQ</a></li>
+              <li><a href="dashboard.html" data-i18n-key="footerDashboard">My Project</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n-key="footerLegal">Legal</h4>
+            <ul>
+              <li><a href="#" data-i18n-key="footerPrivacy">Privacy Policy</a></li>
+              <li><a href="#" data-i18n-key="footerTerms">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        <p data-i18n-key="footerText">&copy; 2026 Zaun Tech. Modern mobile and web development.</p>
+      </footer>
+    </div>
+
+    <!-- Bottom Navigation for Mobile -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="bottom-nav-link" aria-label="Home">
+        <span class="bottom-nav-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </span>
+        <span class="bottom-nav-label" data-i18n-key="navHome">Home</span>
+      </a>
+      <a href="services.html" class="bottom-nav-link" aria-label="Services">
+        <span class="bottom-nav-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </span>
+        <span class="bottom-nav-label" data-i18n-key="navServices">Services</span>
+      </a>
+      <a href="portfolio.html" class="bottom-nav-link" aria-label="Portfolio">
+        <span class="bottom-nav-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+        </span>
+        <span class="bottom-nav-label" data-i18n-key="navPortfolio">Portfolio</span>
+      </a>
+      <a href="profile.html" class="bottom-nav-link" aria-label="Profile">
+        <span class="bottom-nav-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </span>
+        <span class="bottom-nav-label" data-i18n-key="navProfile">Profile</span>
+      </a>
+    </nav>
+
+    <script src="js/firebase-loader.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

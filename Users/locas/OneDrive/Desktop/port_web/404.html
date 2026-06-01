@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | Zaun Tech</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Zaun Tech homepage." />
+    <meta name="robots" content="noindex, follow" />
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        const lang = localStorage.getItem('language') || 'en';
+        document.documentElement.setAttribute('lang', lang);
+        document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a href="index.html" class="brand" data-i18n-key="brand">Zaun Tech</a>
+        <div class="header-actions">
+          <div class="lang-picker">
+            <button id="languageToggle" class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false">EN</button>
+            <div id="languageMenu" class="lang-menu" aria-label="Choose language">
+              <button class="lang-option" data-lang="en" type="button">English</button>
+              <button class="lang-option" data-lang="ar" type="button">العربية</button>
+            </div>
+          </div>
+          <button type="button" class="mobile-nav-button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <div class="theme-picker">
+            <input id="themeToggle" class="theme-switch" type="checkbox" aria-label="Switch theme" />
+            <label class="theme-toggle" for="themeToggle">
+              <span class="theme-icon theme-sun">☀️</span>
+              <span class="theme-icon theme-moon">🌙</span>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="toggle-icon">☰</span>
+          <span class="toggle-label" data-i18n-key="navMenu">Menu</span>
+        </button>
+        <a href="index.html" class="nav-link" aria-label="Home">
+          <span class="nav-icon">⌂</span>
+          <span class="nav-label" data-i18n-key="navHome">Home</span>
+        </a>
+        <a href="services.html" class="nav-link" aria-label="Services">
+          <span class="nav-icon">⚙</span>
+          <span class="nav-label" data-i18n-key="navServices">Services</span>
+        </a>
+        <a href="dashboard.html" class="nav-link" aria-label="My project">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label" data-i18n-key="navDashboard">My project</span>
+        </a>
+        <a href="profile.html" class="nav-link" aria-label="Profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label" data-i18n-key="navProfile">Profile</span>
+        </a>
+        <a href="contact.html" class="nav-link" aria-label="Contact">
+          <span class="nav-icon">✉</span>
+          <span class="nav-label" data-i18n-key="navContact">Contact</span>
+        </a>
+      </nav>
+
+      <main>
+        <section class="section" style="text-align: center; padding: 4rem 1rem;">
+          <div style="max-width: 600px; margin: 0 auto;">
+            <h1 style="font-size: 6rem; font-weight: 700; color: var(--accent); margin: 0;">404</h1>
+            <h2 style="font-size: 2rem; margin: 1rem 0; color: var(--text);" data-i18n-key="404Heading">Page Not Found</h2>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;" data-i18n-key="404Text">
+              The page you're looking for doesn't exist or has been moved.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <a class="btn primary" href="index.html" data-i18n-key="404HomeBtn">Go to Homepage</a>
+              <a class="btn secondary" href="services.html" data-i18n-key="404ServicesBtn">View Services</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p data-i18n-key="footerText">&copy; 2026 Zaun Tech. Modern mobile and web development.</p>
+      </footer>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>

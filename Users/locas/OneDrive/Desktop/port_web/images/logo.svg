@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <!-- Background -->
+  <rect width="200" height="60" rx="8" fill="#e60023"/>
+  
+  <!-- Z Letter -->
+  <path d="M25 15 L55 15 L55 22 L35 22 L55 38 L55 45 L25 45 L25 38 L45 38 L25 22 Z" fill="white"/>
+  
+  <!-- Company Name -->
+  <text x="70" y="38" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">Zaun Tech</text>
+</svg>

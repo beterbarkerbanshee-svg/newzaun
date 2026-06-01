@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e60023" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Zaun Tech — My Project Dashboard</title>
+    <meta name="description" content="View and manage your project requests with Zaun Tech. Track your project status and get support." />
+    <meta name="keywords" content="dashboard, project management, Zaun Tech, project tracking, client portal" />
+    <meta name="author" content="Zaun Tech" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://zauntech.com/dashboard.html" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a href="index.html" class="brand" data-i18n-key="brand">
+          <img src="images/logo.svg" alt="Zaun Tech Logo" class="brand-logo" />
+          <span>Zaun Tech</span>
+        </a>
+        <div class="header-actions">
+          <div class="lang-picker">
+            <button id="languageToggle" class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false">EN</button>
+            <div id="languageMenu" class="lang-menu" aria-label="Choose language">
+              <button class="lang-option" data-lang="en" type="button">English</button>
+              <button class="lang-option" data-lang="ar" type="button">العربية</button>
+            </div>
+          </div>
+          <button type="button" class="mobile-nav-button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <div class="theme-picker">
+            <input id="themeToggle" class="theme-switch" type="checkbox" aria-label="Switch theme" />
+            <label class="theme-toggle" for="themeToggle">
+              <span class="theme-icon theme-sun">☀️</span>
+              <span class="theme-icon theme-moon">🌙</span>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
+          <span class="toggle-icon">☰</span>
+          <span class="toggle-label" data-i18n-key="navMenu">Menu</span>
+        </button>
+        <div id="nav-links" role="menubar">
+          <a href="index.html" class="nav-link" role="menuitem" aria-label="Home page">
+            <span class="nav-icon" aria-hidden="true">⌂</span>
+            <span class="nav-label" data-i18n-key="navHome">Home</span>
+          </a>
+          <a href="services.html" class="nav-link" role="menuitem" aria-label="Services page">
+            <span class="nav-icon" aria-hidden="true">⚙</span>
+            <span class="nav-label" data-i18n-key="navServices">Services</span>
+          </a>
+          <a href="portfolio.html" class="nav-link" role="menuitem" aria-label="Portfolio page">
+            <span class="nav-icon" aria-hidden="true">🎨</span>
+            <span class="nav-label" data-i18n-key="navPortfolio">Portfolio</span>
+          </a>
+          <a href="about.html" class="nav-link" role="menuitem" aria-label="About page">
+            <span class="nav-icon" aria-hidden="true">ℹ</span>
+            <span class="nav-label" data-i18n-key="navAbout">About</span>
+          </a>
+          <a href="faq.html" class="nav-link" role="menuitem" aria-label="FAQ page">
+            <span class="nav-icon" aria-hidden="true">?</span>
+            <span class="nav-label" data-i18n-key="navFAQ">FAQ</span>
+          </a>
+          <a href="dashboard.html" class="nav-link active" role="menuitem" aria-current="page" aria-label="My project dashboard">
+            <span class="nav-icon" aria-hidden="true">📊</span>
+            <span class="nav-label" data-i18n-key="navDashboard">My project</span>
+          </a>
+          <a href="profile.html" class="nav-link" role="menuitem" aria-label="Profile page">
+            <span class="nav-icon" aria-hidden="true">👤</span>
+            <span class="nav-label" data-i18n-key="navProfile">Profile</span>
+          </a>
+          <a href="contact.html" class="nav-link" role="menuitem" aria-label="Contact page">
+            <span class="nav-icon" aria-hidden="true">✉</span>
+            <span class="nav-label" data-i18n-key="navContact">Contact</span>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label" data-i18n-key="accountLabel">Account</p>
+            <h2 data-i18n-key="dashboardHeading">My project</h2>
+            <p data-i18n-key="dashboardText">View requested work, check project status, and ask for support.</p>
+          </div>
+          
+          <!-- Statistics Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">📊</div>
+              <div class="stat-content">
+                <h3 data-i18n-key="statTotalProjects">Total Projects</h3>
+                <p class="stat-number" id="totalProjects">—</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⏳</div>
+              <div class="stat-content">
+                <h3 data-i18n-key="statInProgress">In Progress</h3>
+                <p class="stat-number" id="inProgress">—</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">✅</div>
+              <div class="stat-content">
+                <h3 data-i18n-key="statCompleted">Completed</h3>
+                <p class="stat-number" id="completed">—</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="stat-content">
+                <h3 data-i18n-key="statAvgRating">Avg Rating</h3>
+                <p class="stat-number" id="avgRating">—</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="purchasesList" class="grid-card"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4 data-i18n-key="footerCompany">Company</h4>
+            <ul>
+              <li><a href="about.html" data-i18n-key="footerAbout">About Us</a></li>
+              <li><a href="services.html" data-i18n-key="footerServices">Services</a></li>
+              <li><a href="contact.html" data-i18n-key="footerContact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n-key="footerResources">Resources</h4>
+            <ul>
+              <li><a href="portfolio.html" data-i18n-key="footerPortfolio">Portfolio</a></li>
+              <li><a href="faq.html" data-i18n-key="footerFAQ">FAQ</a></li>
+              <li><a href="dashboard.html" data-i18n-key="footerDashboard">My Project</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n-key="footerLegal">Legal</h4>
+            <ul>
+              <li><a href="#" data-i18n-key="footerPrivacy">Privacy Policy</a></li>
+              <li><a href="#" data-i18n-key="footerTerms">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        <p data-i18n-key="footerText">&copy; 2026 Zaun Tech. Modern mobile and web development.</p>
+      </footer>
+    </div>
+    <script src="js/firebase-loader.js"></script>
+    <script>
+      // Wait for Firebase to load before loading auth-guard
+      document.addEventListener('DOMContentLoaded', function() {
+        const checkFirebase = setInterval(() => {
+          if (typeof firebase !== 'undefined' && firebase.auth) {
+            clearInterval(checkFirebase);
+            console.log('Firebase loaded, loading auth-guard');
+            const script = document.createElement('script');
+            script.src = 'js/auth-guard.js';
+            document.body.appendChild(script);
+          }
+        }, 100);
+      });
+    </script>
+    <script src="js/script.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          if (typeof getPreferredTheme === 'function' && typeof applyTheme === 'function') {
+            applyTheme(getPreferredTheme());
+          }
+          if (typeof getPreferredLanguage === 'function' && typeof applyLanguage === 'function') {
+            applyLanguage(getPreferredLanguage());
+          }
+        });
+      </script>
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

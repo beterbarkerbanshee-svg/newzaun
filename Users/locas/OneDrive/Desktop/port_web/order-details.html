@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaun Tech — Order Details</title>
+    <meta
+      name="description"
+      content="View order details and support options for your purchase."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a href="index.html" class="brand" data-i18n-key="brand">Zaun Tech</a>
+        <div class="header-actions">
+          <div class="lang-picker">
+            <button id="languageToggle" class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false">EN</button>
+            <div id="languageMenu" class="lang-menu" aria-label="Choose language">
+              <button class="lang-option" data-lang="en" type="button">English</button>
+              <button class="lang-option" data-lang="ar" type="button">العربية</button>
+            </div>
+          </div>
+          <button type="button" class="mobile-nav-button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <div class="theme-picker">
+            <input id="themeToggle" class="theme-switch" type="checkbox" aria-label="Switch theme" />
+            <label class="theme-toggle" for="themeToggle">
+              <span class="theme-icon theme-sun">☀️</span>
+              <span class="theme-icon theme-moon">🌙</span>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="toggle-icon">☰</span>
+          <span class="toggle-label" data-i18n-key="navMenu">Menu</span>
+        </button>
+        <a href="index.html" class="nav-link" aria-label="Home">
+          <span class="nav-icon">⌂</span>
+          <span class="nav-label" data-i18n-key="navHome">Home</span>
+        </a>
+        <a href="services.html" class="nav-link" aria-label="Services">
+          <span class="nav-icon">⚙</span>
+          <span class="nav-label" data-i18n-key="navServices">Services</span>
+        </a>
+        <a href="dashboard.html" class="nav-link" aria-label="My project">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label" data-i18n-key="navDashboard">My project</span>
+        </a>
+        <a href="contact.html" class="nav-link" aria-label="Contact">
+          <span class="nav-icon">✉</span>
+          <span class="nav-label" data-i18n-key="navContact">Contact</span>
+        </a>
+      </nav>
+
+      <main>
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label" data-i18n-key="orderDetailsLabel">Order details</p>
+            <h2 id="detailTitle">Order details</h2>
+            <p id="detailSubtitle" data-i18n-key="orderDetailsSubtitle">Review your purchase and support options.</p>
+          </div>
+          <div class="project-card" id="detailCard">
+            <div class="detail-row">
+              <div>
+                <p class="section-label" data-i18n-key="serviceLabel">Service</p>
+                <h3 id="detailService">--</h3>
+              </div>
+              <div>
+                <p class="section-label" data-i18n-key="statusLabel">Status</p>
+                <span id="detailStatus" class="status-badge badge-processing">Processing</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <p class="section-label" data-i18n-key="orderIdLabel">Order ID</p>
+              <p id="detailOrderId">--</p>
+            </div>
+            <!-- Payment method removed -->
+            <div class="detail-item">
+              <p class="section-label" data-i18n-key="buyerLabel">Buyer</p>
+              <p id="detailBuyer">--</p>
+            </div>
+            
+            <!-- Project Progress Section -->
+            <div class="project-progress-section">
+              <div class="detail-item">
+                <p class="section-label" data-i18n-key="projectProgress">Progress</p>
+                <div class="progress-bar">
+                  <div id="detailProgressFill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <p id="detailProgressText" class="progress-text">0%</p>
+              </div>
+              
+              <div class="detail-item">
+                <p class="section-label" data-i18n-key="projectWorkflow">Workflow</p>
+                <p id="detailWorkflow">--</p>
+              </div>
+              
+              <div class="detail-item">
+                <p class="section-label" data-i18n-key="projectEstimatedTime">Estimated Time</p>
+                <p id="detailEstimatedTime">--</p>
+              </div>
+              
+              <div class="detail-item">
+                <p class="section-label" data-i18n-key="projectDemo">Demo</p>
+                <div id="detailDemo">
+                  <span data-i18n-key="demoNotAvailable">Available upon completion</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="detail-item">
+              <p class="section-label" data-i18n-key="supportLabel">Support</p>
+              <div class="contact-actions">
+                <a id="detailEmail" class="btn primary" href="#">Email support</a>
+                <a class="btn" href="https://t.me/your_telegram" target="_blank" data-i18n-key="telegramSupport">Telegram Support</a>
+              </div>
+            </div>
+            <div class="detail-actions">
+              <button class="btn secondary" id="detailBack" data-i18n-key="orderBack">Back to purchases</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p data-i18n-key="footerText">&copy; 2026 Zaun Tech. Modern mobile and web development.</p>
+      </footer>
+    </div>
+    <script src="js/firebase-loader.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      // Set persistence to LOCAL to prevent automatic logout
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .catch(function(error) {
+              console.error("Error setting persistence:", error);
+            });
+        }
+        
+        // Populate order details page
+        if (typeof populateOrderDetailsPage === 'function') {
+          populateOrderDetailsPage();
+        }
+      });
+    </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          if (typeof getPreferredTheme === 'function' && typeof applyTheme === 'function') {
+            applyTheme(getPreferredTheme());
+          }
+          if (typeof getPreferredLanguage === 'function' && typeof applyLanguage === 'function') {
+            applyLanguage(getPreferredLanguage());
+          }
+        });
+      </script>
+  </body>
+</html>

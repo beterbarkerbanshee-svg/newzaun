@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e60023" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Zaun Tech — Project Details</title>
+    <meta name="description" content="View detailed information about our completed projects including screenshots, features, and technical details." />
+    <meta name="keywords" content="project details, portfolio, Zaun Tech, Flutter, web development" />
+    <meta name="author" content="Zaun Tech" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://zauntech.com/project-details.html" />
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Zaun Tech — Project Details" />
+    <meta property="og:description" content="View detailed information about our completed projects including screenshots, features, and technical details." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zauntech.com/project-details.html" />
+    <meta property="og:image" content="https://zauntech.com/og-image.jpg" />
+    <meta property="og:site_name" content="Zaun Tech" />
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Zaun Tech — Project Details" />
+    <meta name="twitter:description" content="View detailed information about our completed projects including screenshots, features, and technical details." />
+    <meta name="twitter:image" content="https://zauntech.com/twitter-image.jpg" />
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        const lang = localStorage.getItem('language') || 'en';
+        document.documentElement.setAttribute('lang', lang);
+        document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      })();
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a href="index.html" class="brand" data-i18n-key="brand">
+          <img src="images/logo.svg" alt="Zaun Tech Logo" class="brand-logo" />
+          <span>Zaun Tech</span>
+        </a>
+        <div class="header-actions">
+          <div class="lang-picker">
+            <button id="languageToggle" class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false">EN</button>
+            <div id="languageMenu" class="lang-menu" aria-label="Choose language">
+              <button class="lang-option" data-lang="en" type="button">English</button>
+              <button class="lang-option" data-lang="ar" type="button">العربية</button>
+            </div>
+          </div>
+          <button type="button" class="mobile-nav-button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <div class="theme-picker">
+            <input id="themeToggle" class="theme-switch" type="checkbox" aria-label="Switch theme" />
+            <label class="theme-toggle" for="themeToggle">
+              <span class="theme-icon theme-sun">☀️</span>
+              <span class="theme-icon theme-moon">🌙</span>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="toggle-icon">☰</span>
+          <span class="toggle-label" data-i18n-key="navMenu">Menu</span>
+        </button>
+        <a href="index.html" class="nav-link" aria-label="Home">
+          <span class="nav-icon">⌂</span>
+          <span class="nav-label" data-i18n-key="navHome">Home</span>
+        </a>
+        <a href="services.html" class="nav-link" aria-label="Services">
+          <span class="nav-icon">⚙</span>
+          <span class="nav-label" data-i18n-key="navServices">Services</span>
+        </a>
+        <a href="portfolio.html" class="nav-link" aria-label="Portfolio">
+          <span class="nav-icon">🎨</span>
+          <span class="nav-label" data-i18n-key="navPortfolio">Portfolio</span>
+        </a>
+        <a href="about.html" class="nav-link" aria-label="About">
+          <span class="nav-icon">ℹ</span>
+          <span class="nav-label" data-i18n-key="navAbout">About</span>
+        </a>
+        <a href="faq.html" class="nav-link" aria-label="FAQ">
+          <span class="nav-icon">?</span>
+          <span class="nav-label" data-i18n-key="navFAQ">FAQ</span>
+        </a>
+        <a href="dashboard.html" class="nav-link" aria-label="My project">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label" data-i18n-key="navDashboard">My project</span>
+        </a>
+        <a href="profile.html" class="nav-link" aria-label="Profile">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label" data-i18n-key="navProfile">Profile</span>
+        </a>
+        <a href="contact.html" class="nav-link" aria-label="Contact">
+          <span class="nav-icon">✉</span>
+          <span class="nav-label" data-i18n-key="navContact">Contact</span>
+        </a>
+      </nav>
+
+      <main>
+        <section class="section">
+          <div class="section-header">
+            <a href="portfolio.html" class="btn secondary" data-i18n-key="backToPortfolio">← Back to Portfolio</a>
+          </div>
+          
+          <div id="projectDetails" class="project-details-container">
+            <!-- Project details will be loaded dynamically -->
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4 data-i18n-key="footerCompany">Company</h4>
+            <ul>
+              <li><a href="about.html" data-i18n-key="footerAbout">About Us</a></li>
+              <li><a href="services.html" data-i18n-key="footerServices">Services</a></li>
+              <li><a href="contact.html" data-i18n-key="footerContact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n-key="footerResources">Resources</h4>
+            <ul>
+              <li><a href="portfolio.html" data-i18n-key="footerPortfolio">Portfolio</a></li>
+              <li><a href="faq.html" data-i18n-key="footerFAQ">FAQ</a></li>
+              <li><a href="dashboard.html" data-i18n-key="footerDashboard">My Project</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n-key="footerLegal">Legal</h4>
+            <ul>
+              <li><a href="#" data-i18n-key="footerPrivacy">Privacy Policy</a></li>
+              <li><a href="#" data-i18n-key="footerTerms">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        <p data-i18n-key="footerText">&copy; 2026 Zaun Tech. Modern mobile and web development.</p>
+      </footer>
+    </div>
+    <script src="js/firebase-loader.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      // Project data
+      const projects = {
+        gov_guide: {
+          title: { en: 'gov_guide', ar: 'gov_guide' },
+          badge: { en: 'Featured', ar: 'مميز' },
+          description: { en: 'A citizen-focused government guide app that helps people find services, read instructions, and complete tasks with confidence.', ar: 'تطبيق دليل حكومي يركز على المواطنين يساعد الناس في العثور على الخدمات وقراءة التعليمات وإتمام المهام بثقة.' },
+          fullDescription: { en: 'gov_guide is a comprehensive mobile application designed to help citizens navigate government services efficiently. The app provides step-by-step instructions for various government procedures, service locations, and document requirements. Built with Flutter for cross-platform compatibility, it features offline support, real-time updates, and an intuitive interface designed for users of all technical backgrounds.', ar: 'gov_guide هو تطبيق موبايل شامل مصمم لمساعدة المواطنين في التنقل في الخدمات الحكومية بكفاءة. يوفر التطبيق تعليمات خطوة بخطوة لإجراءات حكومية متنوعة، ومواقع الخدمات، ومتطلبات المستندات. مبني بـ Flutter للتوافق عبر المنصات، يتميز بدعم بدون اتصال، وتحديثات في الوقت الفعلي، وواجهة بديهية مصممة للمستخدمين من جميع الخلفيات التقنية.' },
+          technologies: ['Flutter', 'Mobile', 'UI/UX', 'Offline Support'],
+          features: [
+            { en: 'Service directory with search functionality', ar: 'دليل الخدمات مع وظيفة البحث' },
+            { en: 'Step-by-step procedure guides', ar: 'دليل الإجراءات خطوة بخطوة' },
+            { en: 'Document checklist and requirements', ar: 'قائمة المستندات والمتطلبات' },
+            { en: 'Offline mode for essential information', ar: 'وضع بدون اتصال للمعلومات الأساسية' },
+            { en: 'Real-time service status updates', ar: 'تحديثات حالة الخدمة في الوقت الفعلي' }
+          ],
+          images: ['gov_guide_1.jpg', 'gov_guide_2.jpg', 'gov_guide_3.jpg']
+        },
+        shopease: {
+          title: { en: 'ShopEase App', ar: 'تطبيق ShopEase' },
+          badge: { en: 'Mobile', ar: 'موبايل' },
+          description: { en: 'Modern e-commerce mobile application with seamless checkout, product catalog, and order tracking features.', ar: 'تطبيق موبايل للتجارة الإلكترونية حديث مع دفع سلس، كتالوج منتجات، وميزات تتبع الطلبات.' },
+          fullDescription: { en: 'ShopEase is a full-featured e-commerce mobile application built with Flutter. It includes a product catalog with advanced filtering, secure payment integration, order tracking, and a user-friendly shopping cart. The app supports multiple payment methods, push notifications for order updates, and a personalized recommendation system based on user preferences.', ar: 'ShopEase هو تطبيق موبايل للتجارة الإلكترونية كامل الميزات مبني بـ Flutter. يتضمن كتالوج منتجات مع تصفية متقدمة، تكامل دفع آمن، تتبع الطلبات، وسلة تسوق سهلة الاستخدام. يدعم التطبيق طرق دفع متعددة، إشعارات دفع لتحديثات الطلبات، ونظام توصيات مخصص بناءً على تفضيلات المستخدم.' },
+          technologies: ['Flutter', 'E-commerce', 'Payment', 'Firebase'],
+          features: [
+            { en: 'Advanced product search and filtering', ar: 'بحث وتصفية متقدمة للمنتجات' },
+            { en: 'Secure payment gateway integration', ar: 'تكامل بوابة دفع آمنة' },
+            { en: 'Real-time order tracking', ar: 'تتبع الطلبات في الوقت الفعلي' },
+            { en: 'Push notifications for order updates', ar: 'إشعارات دفع لتحديثات الطلبات' },
+            { en: 'Personalized product recommendations', ar: 'توصيات منتجات مخصصة' }
+          ],
+          images: ['shopease_1.jpg', 'shopease_2.jpg', 'shopease_3.jpg']
+        },
+        techcorp: {
+          title: { en: 'TechCorp Website', ar: 'موقع TechCorp' },
+          badge: { en: 'Web', ar: 'ويب' },
+          description: { en: 'Professional corporate website with modern design, responsive layout, and optimized performance.', ar: 'موقع شركة احترافي بتصميم حديث وتخطيط متجاوب وأداء محسن.' },
+          fullDescription: { en: 'TechCorp Website is a professional corporate website built with modern web technologies. It features a clean, responsive design that works seamlessly across all devices. The site includes interactive elements, smooth animations, SEO optimization, and fast loading times. Built with HTML, CSS, and TypeScript for maintainability and performance.', ar: 'موقع TechCorp هو موقع شركة احترافي مبني بتقنيات الويب الحديثة. يتميز بتصميم نظيف ومتجاوب يعمل بسلاسة عبر جميع الأجهزة. يتضمن الموقع عناصر تفاعلية، رسوم متحركة سلسة، تحسين SEO، وأوقات تحميل سريعة. مبني بـ HTML و CSS و TypeScript للصيانة والأداء.' },
+          technologies: ['HTML/CSS', 'TypeScript', 'Responsive', 'SEO'],
+          features: [
+            { en: 'Fully responsive design', ar: 'تصميم متجاوب بالكامل' },
+            { en: 'SEO optimized structure', ar: 'هيكل محسن لـ SEO' },
+            { en: 'Smooth animations and transitions', ar: 'رسوم متحركة وانتقالات سلسة' },
+            { en: 'Fast loading performance', ar: 'أداء تحميل سريع' },
+            { en: 'Interactive user interface', ar: 'واجهة مستخدم تفاعلية' }
+          ],
+          images: ['techcorp_1.jpg', 'techcorp_2.jpg', 'techcorp_3.jpg']
+        },
+        autoflow: {
+          title: { en: 'AutoFlow System', ar: 'نظام AutoFlow' },
+          badge: { en: 'Automation', ar: 'أتمتة' },
+          description: { en: 'Python-based automation system for data processing, report generation, and workflow optimization.', ar: 'نظام أتمتة يعتمد على Python لمعالجة البيانات وتوليد التقارير وتحسين سير العمل.' },
+          fullDescription: { en: 'AutoFlow System is a powerful automation solution built with Python. It automates repetitive data processing tasks, generates comprehensive reports, and optimizes workflow processes. The system includes scheduled task execution, email notifications, API integrations, and a web-based dashboard for monitoring automation runs. Perfect for businesses looking to streamline their operations.', ar: 'نظام AutoFlow هو حل أتمتة قوي مبني بـ Python. يأتمت مهام معالجة البيانات المتكررة، يولد تقارير شاملة، ويحسن عمليات سير العمل. يتضمن النظام تنفيذ المهام المجدولة، إشعارات البريد الإلكتروني، تكاملات API، ولوحة تحكم على الويب لمراقبة عمليات الأتمتة. مثالي للشركات التي تريد تبسيط عملياتها.' },
+          technologies: ['Python', 'Automation', 'API', 'Data'],
+          features: [
+            { en: 'Automated data processing pipelines', ar: 'خطوط معالجة بيانات مؤتمتة' },
+            { en: 'Scheduled task execution', ar: 'تنفيذ مهام مجدولة' },
+            { en: 'Email and notification system', ar: 'نظام البريد الإلكتروني والإشعارات' },
+            { en: 'API integrations for data sync', ar: 'تكاملات API لمزامنة البيانات' },
+            { en: 'Web dashboard for monitoring', ar: 'لوحة تحكم ويب للمراقبة' }
+          ],
+          images: ['autoflow_1.jpg', 'autoflow_2.jpg', 'autoflow_3.jpg']
+        },
+        healthtrack: {
+          title: { en: 'HealthTrack', ar: 'HealthTrack' },
+          badge: { en: 'Health', ar: 'صحة' },
+          description: { en: 'Health monitoring mobile app with activity tracking, medication reminders, and health reports.', ar: 'تطبيق موبايل لمراقبة الصحة مع تتبع النشاط وتذكيرات الأدوية والتقارير الصحية.' },
+          fullDescription: { en: 'HealthTrack is a comprehensive health monitoring application built with Flutter. It helps users track their daily activities, manage medication schedules, and generate health reports. The app integrates with wearable devices, provides personalized health insights, and includes features for setting health goals and tracking progress over time.', ar: 'HealthTrack هو تطبيق شامل لمراقبة الصحة مبني بـ Flutter. يساعد المستخدمين في تتبع نشاطهم اليومي، إدارة جداول الأدوية، وتوليد تقارير صحية. يتكامل التطبيق مع الأجهزة القابلة للارتداء، يوفر رؤى صحية مخصصة، ويتضمن ميزات لتحديد أهداف الصحية وتتبع التقدم بمرور الوقت.' },
+          technologies: ['Flutter', 'Health', 'Tracking', 'Wearables'],
+          features: [
+            { en: 'Activity and fitness tracking', ar: 'تتبع النشاط واللياقة' },
+            { en: 'Medication reminder system', ar: 'نظام تذكير الأدوية' },
+            { en: 'Health report generation', ar: 'توليد التقارير الصحية' },
+            { en: 'Wearable device integration', ar: 'تكامل الأجهزة القابلة للارتداء' },
+            { en: 'Personalized health insights', ar: 'رؤى صحية مخصصة' }
+          ],
+          images: ['healthtrack_1.jpg', 'healthtrack_2.jpg', 'healthtrack_3.jpg']
+        },
+        analytics: {
+          title: { en: 'Analytics Dashboard', ar: 'لوحة تحكم التحليلات' },
+          badge: { en: 'Dashboard', ar: 'لوحة تحكم' },
+          description: { en: 'Interactive web dashboard with real-time data visualization, charts, and reporting tools.', ar: 'لوحة تحكم ويب تفاعلية مع تصور البيانات في الوقت الفعلي والرسوم البيانية وأدوات التقارير.' },
+          fullDescription: { en: 'Analytics Dashboard is an interactive web-based dashboard built with TypeScript. It provides real-time data visualization with interactive charts, customizable widgets, and comprehensive reporting tools. The dashboard supports data from multiple sources, includes export functionality, and offers a responsive design that works on desktop and mobile devices.', ar: 'لوحة تحكم التحليلات هي لوحة تحكم تفاعلية على الويب مبنية بـ TypeScript. توفر تصور البيانات في الوقت الفعلي مع رسوم بيانية تفاعلية، أدوات قابلة للتخصيص، وأدوات تقارير شاملة. تدعم اللوحة البيانات من مصادر متعددة، تتضمن وظيفة التصدير، وتوفر تصميم متجاوب يعمل على أجهزة سطح المكتب والموبايل.' },
+          technologies: ['TypeScript', 'Charts', 'Analytics', 'Dashboard'],
+          features: [
+            { en: 'Real-time data visualization', ar: 'تصور البيانات في الوقت الفعلي' },
+            { en: 'Interactive charts and graphs', ar: 'رسوم بيانية تفاعلية' },
+            { en: 'Customizable dashboard widgets', ar: 'أدوات لوحة تحكم قابلة للتخصيص' },
+            { en: 'Data export functionality', ar: 'وظيفة تصدير البيانات' },
+            { en: 'Multi-source data integration', ar: 'تكامل البيانات متعددة المصادر' }
+          ],
+          images: ['analytics_1.jpg', 'analytics_2.jpg', 'analytics_3.jpg']
+        }
+      };
+
+      // Load project details
+      function loadProjectDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const projectId = params.get('project');
+        const lang = localStorage.getItem('language') || 'en';
+        const project = projects[projectId];
+        
+        if (!project) {
+          document.getElementById('projectDetails').innerHTML = `
+            <div class="highlight-card">
+              <h2 data-i18n-key="projectNotFound">Project not found</h2>
+              <p data-i18n-key="projectNotFoundText">The requested project could not be found. Please return to the portfolio.</p>
+              <a href="portfolio.html" class="btn primary" data-i18n-key="backToPortfolio">Back to Portfolio</a>
+            </div>
+          `;
+          return;
+        }
+
+        const container = document.getElementById('projectDetails');
+        const title = project.title[lang];
+        const badge = project.badge[lang];
+        const description = project.description[lang];
+        const fullDescription = project.fullDescription[lang];
+        const technologies = project.technologies;
+        const features = project.features.map(f => f[lang]);
+        const images = project.images;
+
+        container.innerHTML = `
+          <div class="project-header">
+            <span class="badge">${badge}</span>
+            <h1>${title}</h1>
+            <p class="project-description">${description}</p>
+          </div>
+
+          <div class="project-gallery">
+            <h2 data-i18n-key="projectGallery">Project Gallery</h2>
+            <div class="gallery-grid">
+              ${images.map((img, index) => `
+                <div class="gallery-item">
+                  <img src="images/portfolio/${img}" alt="${title} - Image ${index + 1}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%239ca3af%22 font-family=%22sans-serif%22 font-size=%2216%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImage ${index + 1}%3C/text%3E%3C/svg%3E'" />
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="project-full-description">
+            <h2 data-i18n-key="projectOverview">Project Overview</h2>
+            <p>${fullDescription}</p>
+          </div>
+
+          <div class="project-technologies">
+            <h2 data-i18n-key="projectTechnologies">Technologies Used</h2>
+            <div class="chip-row">
+              ${technologies.map(tech => `<span>${tech}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="project-features">
+            <h2 data-i18n-key="projectFeatures">Key Features</h2>
+            <ul>
+              ${features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="project-actions">
+            <a href="contact.html" class="btn primary" data-i18n-key="startSimilarProject">Start Similar Project</a>
+            <a href="portfolio.html" class="btn secondary" data-i18n-key="viewMoreProjects">View More Projects</a>
+          </div>
+        `;
+      }
+
+      // Load project details on page load
+      document.addEventListener('DOMContentLoaded', loadProjectDetails);
+    </script>
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

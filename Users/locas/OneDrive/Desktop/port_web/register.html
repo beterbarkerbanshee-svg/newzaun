@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e60023">
+    <link rel="manifest" href="manifest.json">
+    <title>Register — Zaun Tech</title>
+    <meta name="description" content="Create a new account at Zaun Tech to start your mobile and web development project.">
+    <meta name="keywords" content="register, sign up, Zaun Tech, account, create account">
+    <meta name="author" content="Zaun Tech">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://zauntech.com/register.html">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: radial-gradient(circle at top left, rgba(230, 0, 35, 0.08), transparent 25%), radial-gradient(circle at bottom right, rgba(230, 0, 35, 0.06), transparent 23%), var(--bg); padding: 20px; }
+        .login-container {
+            background: linear-gradient(135deg, var(--surface) 0%, rgba(230, 0, 35, 0.02) 100%);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e60023, #ff4757);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-container:hover::before {
+            opacity: 1;
+        }
+
+        .login-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(230, 0, 35, 0.12);
+            border-color: rgba(230, 0, 35, 0.2);
+        }
+        .login-header h1 { margin-bottom: 0.5rem; font-size: 1.75rem; color: var(--text); }
+        .login-header p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2rem; }
+        .back-home { margin-top: 1.5rem; display: inline-block; font-size: 0.9rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+        .back-home:hover { text-decoration: underline; }
+        /* Firebase UI container styling */
+        .firebaseui-container {
+            box-shadow: none !important;
+            background: transparent !important;
+        }
+        .firebaseui-card-content {
+            padding: 0 !important;
+        }
+        .firebaseui-idp-button {
+            border-radius: 12px !important;
+            font-family: inherit !important;
+            box-shadow: none !important;
+            border: 1px solid var(--border) !important;
+        }
+        .dark .firebaseui-idp-button {
+            background-color: var(--surface-strong) !important;
+            color: var(--text) !important;
+        }
+        .dark .firebaseui-idp-text {
+            color: var(--text) !important;
+        }
+        .dark .firebaseui-title {
+            color: var(--text) !important;
+        }
+        .dark .firebaseui-container {
+            background: transparent !important;
+        }
+        .dark .firebaseui-card-header {
+            background: transparent !important;
+        }
+        .dark .firebaseui-textfield {
+            background: var(--surface) !important;
+            color: var(--text) !important;
+        }
+        .dark .firebaseui-input {
+            color: var(--text) !important;
+        }
+        .dark .firebaseui-label {
+            color: var(--text-secondary) !important;
+        }
+        .separator {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .separator span {
+            padding: 0 1rem;
+        }
+    </style>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <!-- Firebase UI -->
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <script src="js/firebase-loader.js"></script>
+    <script>
+        // Firebase initialization for register.html
+        const firebaseConfig = {
+            apiKey: "AIzaSyC6JxLzhNR5O9rggtyucTbY7DFGWpBnf2w",
+            authDomain: "zaun-tech.firebaseapp.com",
+            projectId: "zaun-tech",
+            storageBucket: "zaun-tech.firebasestorage.app",
+            messagingSenderId: "1049632365222",
+            appId: "1:1049632365222:web:b2bc3e0ab686018676b267"
+        };
+        
+        function initializeFirebase() {
+            if (window.firebase && !firebase.apps.length) {
+                console.log('Initializing Firebase in register.html');
+                firebase.initializeApp(firebaseConfig);
+                window.firebaseAuth = firebase.auth();
+                window.firebaseDB = firebase.firestore();
+                
+                firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                    .then(() => {
+                        console.log('Persistence set to LOCAL in register.html');
+                    })
+                    .catch(function(error) {
+                        console.error("Error setting persistence in register.html:", error);
+                    });
+            } else if (window.firebase && firebase.apps.length) {
+                console.log('Firebase already initialized, setting auth and db');
+                window.firebaseAuth = firebase.auth();
+                window.firebaseDB = firebase.firestore();
+            }
+        }
+        
+        // Wait for Firebase to load
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkFirebase = setInterval(() => {
+                if (typeof firebase !== 'undefined' && firebase.auth) {
+                    clearInterval(checkFirebase);
+                    console.log('Firebase loaded, initializing');
+                    initializeFirebase();
+                    
+                    // Initialize Firebase UI after Firebase is ready
+                    setTimeout(() => {
+                        const uiConfig = {
+                            callbacks: {
+                                signInSuccessWithAuthResult: async function(authResult, redirectUrl) {
+                                    // User successfully signed in.
+                                    // Save user to Firestore
+                                    await saveUserToFirestore(authResult.user);
+                                    // Return type determines whether we continue the redirect automatically
+                                    // or perform other logic.
+                                    window.location.href = 'dashboard.html';
+                                    return true;
+                                },
+                                uiShown: function() {
+                                    // The widget is rendered.
+                                },
+                                signInFailure: function(error) {
+                                    // Some unrecoverable error occurred during sign in.
+                                    // Return a promise when error handling is completed and FirebaseUI
+                                    // will wait, or throw to abort the flow.
+                                    console.error('Sign in error:', error);
+                                    return Promise.resolve();
+                                }
+                            },
+                            signInFlow: 'popup',
+                            signInOptions: [
+                                {
+                                    provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                                    customParameters: {
+                                        prompt: 'select_account'
+                                    }
+                                }
+                            ],
+                            tosUrl: '<your-tos-url>',
+                            privacyPolicyUrl: '<your-privacy-policy-url>'
+                        };
+
+                        const ui = new firebaseui.auth.AuthUI(firebase.auth());
+                        ui.start('#firebaseui-auth-container', uiConfig);
+                    }, 500);
+                }
+            }, 100);
+        });
+    </script>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <img src="images/logo.svg" alt="Zaun Tech Logo" style="height: 60px; width: auto; margin-bottom: 1rem;" />
+                <p data-i18n="registerSubtitle">إنشاء حساب جديد للبدء في استخدام خدمات Zaun Tech.</p>
+            </div>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <input type="email" id="email" data-i18n-placeholder="emailPlaceholder" placeholder="البريد الإلكتروني" required style="width: 100%; padding: 12px; margin-bottom: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text);">
+                    <div id="email-error" style="color: #e60023; font-size: 0.85rem; margin-top: -0.5rem; margin-bottom: 0.5rem; display: none;"></div>
+                </div>
+                <div class="form-group">
+                    <div style="display: flex; gap: 8px;">
+                        <input type="password" id="password" data-i18n-placeholder="passwordPlaceholder" placeholder="كلمة المرور" required style="flex: 1; padding: 12px; margin-bottom: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text);">
+                        <button type="button" id="toggle-password" style="padding: 12px; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); display: flex; align-items: center; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="password-strength" style="margin-top: -0.5rem; margin-bottom: 0.5rem; font-size: 0.8rem;"></div>
+                </div>
+                <div class="form-group">
+                    <div style="display: flex; gap: 8px;">
+                        <input type="password" id="confirm-password" data-i18n-placeholder="confirmPasswordPlaceholder" placeholder="تأكيد كلمة المرور" required style="flex: 1; padding: 12px; margin-bottom: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text);">
+                        <button type="button" id="toggle-confirm-password" style="padding: 12px; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); display: flex; align-items: center; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="confirm-password-error" style="color: #e60023; font-size: 0.85rem; margin-top: -0.5rem; margin-bottom: 0.5rem; display: none;"></div>
+                </div>
+                <button type="submit" data-i18n="registerButton" style="width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">إنشاء حساب</button>
+            </form>
+            
+            <div class="separator">
+                <span data-i18n="or">أو</span>
+            </div>
+            
+            <div id="firebaseui-auth-container"></div>
+            
+            <a href="login.html" class="back-home" data-i18n="haveAccount">لديك حساب؟ تسجيل الدخول</a>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                brand: 'Zaun Tech',
+                registerSubtitle: 'Create a new account to start using Zaun Tech services.',
+                emailPlaceholder: 'Email',
+                passwordPlaceholder: 'Password',
+                confirmPasswordPlaceholder: 'Confirm Password',
+                registerButton: 'Create Account',
+                googleSignIn: 'Sign up with Google',
+                haveAccount: 'Have an account? Sign in',
+                creatingAccount: 'Creating account...',
+                emailRequired: 'Please enter your email address.',
+                emailInvalid: 'Please enter a valid email address.',
+                passwordRequired: 'Please enter your password.',
+                confirmPasswordRequired: 'Please confirm your password.',
+                passwordMismatch: 'Passwords do not match.',
+                passwordTooWeak: 'Password is too weak. Please use a stronger password.',
+                emailAlreadyInUse: 'This email is already in use. Please sign in or use the forgot password option.',
+                registerError: 'An error occurred during account creation: ',
+                googleError: 'An error occurred during Google sign up: '
+            },
+            ar: {
+                brand: 'Zaun Tech',
+                registerSubtitle: 'إنشاء حساب جديد للبدء في استخدام خدمات Zaun Tech.',
+                emailPlaceholder: 'البريد الإلكتروني',
+                passwordPlaceholder: 'كلمة المرور',
+                confirmPasswordPlaceholder: 'تأكيد كلمة المرور',
+                registerButton: 'إنشاء حساب',
+                googleSignIn: 'إنشاء حساب باستخدام Google',
+                haveAccount: 'لديك حساب؟ تسجيل الدخول',
+                creatingAccount: 'جاري إنشاء الحساب...',
+                emailRequired: 'الرجاء إدخال البريد الإلكتروني.',
+                emailInvalid: 'الرجاء إدخال بريد إلكتروني صحيح.',
+                passwordRequired: 'الرجاء إدخال كلمة المرور.',
+                confirmPasswordRequired: 'الرجاء تأكيد كلمة المرور.',
+                passwordMismatch: 'كلمات المرور غير متطابقة.',
+                passwordTooWeak: 'كلمة المرور ضعيفة جداً. يرجى استخدام كلمة مرور أقوى.',
+                emailAlreadyInUse: 'هذا البريد الإلكتروني مستخدم بالفعل. يرجى تسجيل الدخول أو استخدام خيار نسيت كلمة السر.',
+                registerError: 'حدث خطأ أثناء إنشاء الحساب: ',
+                googleError: 'حدث خطأ أثناء إنشاء الحساب باستخدام Google: '
+            }
+        };
+
+        // Email validation function
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/\d/)) strength++;
+            if (password.match(/[^a-zA-Z\d]/)) strength++;
+            return strength;
+        }
+
+        // Loading State Management
+        class LoadingManager {
+            constructor() {
+                this.overlay = null;
+            }
+            setButtonLoading(button, isLoading) {
+                if (!button) return;
+                if (isLoading) {
+                    button.dataset.originalText = button.textContent;
+                    button.disabled = true;
+                    button.style.opacity = '0.7';
+                    button.style.cursor = 'not-allowed';
+                } else {
+                    button.textContent = button.dataset.originalText || button.textContent;
+                    button.disabled = false;
+                    button.style.opacity = '1';
+                    button.style.cursor = 'pointer';
+                }
+            }
+        }
+
+        // Email/password registration handler
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const lang = localStorage.getItem('language') || 'en';
+            const t = translations[lang];
+            const emailError = document.getElementById('email-error');
+            const confirmPasswordError = document.getElementById('confirm-password-error');
+            const loading = new LoadingManager();
+            
+            // Validate email
+            if (!email) {
+                emailError.textContent = t.emailRequired;
+                emailError.style.display = 'block';
+                return;
+            }
+            if (!validateEmail(email)) {
+                emailError.textContent = t.emailInvalid;
+                emailError.style.display = 'block';
+                return;
+            }
+            emailError.style.display = 'none';
+            
+            // Validate password
+            if (!password) {
+                alert(t.passwordRequired);
+                return;
+            }
+            
+            // Check password strength
+            const strength = checkPasswordStrength(password);
+            if (strength < 2) {
+                alert(t.passwordTooWeak);
+                return;
+            }
+            
+            // Validate confirm password
+            if (!confirmPassword) {
+                confirmPasswordError.textContent = t.confirmPasswordRequired;
+                confirmPasswordError.style.display = 'block';
+                return;
+            }
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = t.passwordMismatch;
+                confirmPasswordError.style.display = 'block';
+                return;
+            }
+            confirmPasswordError.style.display = 'none';
+            
+            // Disable button and show loading state
+            loading.setButtonLoading(submitBtn, true);
+            
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(function(result) {
+                    window.location.href = 'dashboard.html';
+                })
+                .catch(function(error) {
+                    console.error("Registration error:", error);
+                    // Re-enable button
+                    loading.setButtonLoading(submitBtn, false);
+                    
+                    if (error.code === 'auth/email-already-in-use') {
+                        alert(t.emailAlreadyInUse);
+                    } else if (error.code === 'auth/weak-password') {
+                        alert(t.passwordTooWeak);
+                    } else {
+                        alert(t.registerError + error.message);
+                    }
+                });
+        });
+
+        // Toggle password visibility
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = this;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+            }
+        });
+
+        // Toggle confirm password visibility
+        document.getElementById('toggle-confirm-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('confirm-password');
+            const toggleBtn = this;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+            }
+        });
+
+        // Basic theme and language support
+        const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+
+        const lang = localStorage.getItem('language') || 'en';
+        document.documentElement.setAttribute('lang', lang);
+        document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+        // Apply translations
+        function applyTranslations(lang) {
+            const t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+        }
+        applyTranslations(lang);
+
+        // Real-time email validation
+        document.getElementById('email').addEventListener('input', function(e) {
+            const email = e.target.value;
+            const emailError = document.getElementById('email-error');
+            if (email && !validateEmail(email)) {
+                emailError.textContent = translations[lang].emailInvalid;
+                emailError.style.display = 'block';
+            } else {
+                emailError.style.display = 'none';
+            }
+        });
+
+        // Real-time password strength indicator
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strength = checkPasswordStrength(password);
+            const strengthDiv = document.getElementById('password-strength');
+            if (password) {
+                const colors = ['#e60023', '#ff6b00', '#ffc107', '#28a745', '#20c997'];
+                const langLabels = {
+                    en: ['', 'Weak', 'Fair', 'Good', 'Strong', 'Very Strong'],
+                    ar: ['', 'ضعيفة', 'متوسطة', 'جيدة', 'قوية', 'قوية جداً']
+                };
+                strengthDiv.style.color = colors[strength];
+                strengthDiv.textContent = langLabels[lang][strength];
+            } else {
+                strengthDiv.textContent = '';
+            }
+        });
+
+        // Real-time password confirmation validation
+        document.getElementById('confirm-password').addEventListener('input', function(e) {
+            const confirmPassword = e.target.value;
+            const password = document.getElementById('password').value;
+            const confirmPasswordError = document.getElementById('confirm-password-error');
+            if (confirmPassword && password !== confirmPassword) {
+                confirmPasswordError.textContent = translations[lang].passwordMismatch;
+                confirmPasswordError.style.display = 'block';
+            } else {
+                confirmPasswordError.style.display = 'none';
+            }
+        });
+
+        // Save user to Firestore function
+        async function saveUserToFirestore(user) {
+            try {
+                console.log('saveUserToFirestore called with user:', user);
+                
+                if (!firebase.firestore) {
+                    console.warn('Firestore not initialized');
+                    return;
+                }
+                
+                if (!user || !user.uid) {
+                    console.error('Cannot save user: User UID is missing');
+                    return;
+                }
+                
+                console.log('User UID:', user.uid);
+                console.log('User email:', user.email);
+                console.log('User displayName:', user.displayName);
+                
+                const db = firebase.firestore();
+                const userRef = db.collection('users').doc(user.uid);
+                
+                console.log('Checking if user exists in Firestore...');
+                // Check if user already exists
+                const doc = await userRef.get();
+                if (doc.exists) {
+                    console.log('User already exists in Firestore');
+                    return;
+                }
+                
+                console.log('User does not exist, saving to Firestore...');
+                // Save user data
+                await userRef.set({
+                    email: user.email || user.uid, // Use UID if email is null
+                    displayName: user.displayName || user.email || user.uid,
+                    uid: user.uid,
+                    createdAt: new Date().toISOString(),
+                    emailVerified: user.emailVerified || false
+                });
+                
+                console.log('User saved to Firestore successfully');
+            } catch (e) {
+                console.error('Error saving user to Firestore:', e);
+                console.error('Error details:', e.message, e.code);
+            }
+        }
+    </script>
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#e60023" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Zaun Tech — Profile</title>
+  <meta name="description" content="Manage your profile and account settings at Zaun Tech." />
+  <meta name="keywords" content="profile, account settings, Zaun Tech, user profile" />
+  <meta name="author" content="Zaun Tech" />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://zauntech.com/profile.html" />
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+      const lang = localStorage.getItem('language') || 'en';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a href="index.html" class="brand" data-i18n-key="brand">
+        <img src="images/logo.svg" alt="Zaun Tech Logo" class="brand-logo" />
+        <span>Zaun Tech</span>
+      </a>
+      <div class="header-actions">
+        <div class="lang-picker">
+          <button id="languageToggle" class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false">EN</button>
+          <div id="languageMenu" class="lang-menu" aria-label="Choose language">
+            <button class="lang-option" data-lang="en" type="button">English</button>
+            <button class="lang-option" data-lang="ar" type="button">العربية</button>
+          </div>
+        </div>
+        <button type="button" class="mobile-nav-button" aria-label="Open menu" aria-expanded="false">☰</button>
+        <div class="theme-picker">
+          <input id="themeToggle" class="theme-switch" type="checkbox" aria-label="Switch theme" />
+          <label class="theme-toggle" for="themeToggle">
+            <span class="theme-icon theme-sun">☀️</span>
+            <span class="theme-icon theme-moon">🌙</span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
+        <span class="toggle-icon">☰</span>
+        <span class="toggle-label" data-i18n-key="navMenu">Menu</span>
+      </button>
+      <div id="nav-links" role="menubar">
+        <a href="index.html" class="nav-link" role="menuitem" aria-label="Home page">
+          <span class="nav-icon" aria-hidden="true">⌂</span>
+          <span class="nav-label" data-i18n-key="navHome">Home</span>
+        </a>
+        <a href="services.html" class="nav-link" role="menuitem" aria-label="Services page">
+          <span class="nav-icon" aria-hidden="true">⚙</span>
+          <span class="nav-label" data-i18n-key="navServices">Services</span>
+        </a>
+        <a href="portfolio.html" class="nav-link" role="menuitem" aria-label="Portfolio page">
+          <span class="nav-icon" aria-hidden="true">🎨</span>
+          <span class="nav-label" data-i18n-key="navPortfolio">Portfolio</span>
+        </a>
+        <a href="about.html" class="nav-link" role="menuitem" aria-label="About page">
+          <span class="nav-icon" aria-hidden="true">ℹ</span>
+          <span class="nav-label" data-i18n-key="navAbout">About</span>
+        </a>
+        <a href="faq.html" class="nav-link" role="menuitem" aria-label="FAQ page">
+          <span class="nav-icon" aria-hidden="true">?</span>
+          <span class="nav-label" data-i18n-key="navFAQ">FAQ</span>
+        </a>
+        <a href="dashboard.html" class="nav-link" role="menuitem" aria-label="My project dashboard">
+          <span class="nav-icon" aria-hidden="true">📊</span>
+          <span class="nav-label" data-i18n-key="navDashboard">My project</span>
+        </a>
+        <a href="profile.html" class="nav-link active" role="menuitem" aria-current="page" aria-label="Profile page">
+          <span class="nav-icon" aria-hidden="true">👤</span>
+          <span class="nav-label" data-i18n-key="navProfile">Profile</span>
+        </a>
+        <a href="contact.html" class="nav-link" role="menuitem" aria-label="Contact page">
+          <span class="nav-icon" aria-hidden="true">✉</span>
+          <span class="nav-label" data-i18n-key="navContact">Contact</span>
+        </a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="section">
+        <div class="section-header">
+          <p class="section-label" data-i18n-key="profileLabel">Account</p>
+          <h2 data-i18n-key="profileHeading">Personal Profile</h2>
+        </div>
+
+        <div class="highlight-card">
+          <div id="profileError" class="error-message" style="display: none;"></div>
+          <div id="profileSuccess" class="success-message" style="display: none;"></div>
+          <form id="profileForm">
+            <div class="form-row">
+              <label for="profileName" data-i18n-key="nameLabel">Name</label>
+              <input type="text" id="profileName" data-i18n-placeholder="namePlaceholder" required />
+            </div>
+            <div class="form-row">
+              <label for="profileEmail" data-i18n-key="emailLabel">Email</label>
+              <input type="email" id="profileEmail" disabled />
+            </div>
+            <div class="form-row">
+              <label for="profileContactEmail" data-i18n-key="contactEmailLabel">Contact Email</label>
+              <input type="email" id="profileContactEmail" placeholder="contact@example.com" />
+            </div>
+            <div class="form-row">
+              <label for="profilePhone" data-i18n-key="phoneLabel">Phone</label>
+              <input type="tel" id="profilePhone" placeholder="+964..." />
+            </div>
+            <div class="form-row">
+              <label for="profileTelegram" data-i18n-key="telegramLabel">Telegram ID</label>
+              <input type="text" id="profileTelegram" placeholder="@username" />
+            </div>
+            <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+              <button type="submit" class="btn primary" data-i18n-key="saveChanges">Save Changes</button>
+              <button type="button" id="signOutBtn" class="btn secondary" data-i18n-key="signOut">Sign Out</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 data-i18n-key="footerCompany">Company</h4>
+          <ul>
+            <li><a href="about.html" data-i18n-key="footerAbout">About Us</a></li>
+            <li><a href="services.html" data-i18n-key="footerServices">Services</a></li>
+            <li><a href="contact.html" data-i18n-key="footerContact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n-key="footerResources">Resources</h4>
+          <ul>
+            <li><a href="portfolio.html" data-i18n-key="footerPortfolio">Portfolio</a></li>
+            <li><a href="faq.html" data-i18n-key="footerFAQ">FAQ</a></li>
+            <li><a href="dashboard.html" data-i18n-key="footerDashboard">My Project</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n-key="footerLegal">Legal</h4>
+          <ul>
+            <li><a href="#" data-i18n-key="footerPrivacy">Privacy Policy</a></li>
+            <li><a href="#" data-i18n-key="footerTerms">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <p data-i18n-key="footerText">&copy; 2026 Zaun Tech. Modern mobile and web development.</p>
+    </footer>
+  </div>
+
+  <!-- Bottom Navigation for Mobile -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html" class="bottom-nav-link" aria-label="Home">
+      <span class="bottom-nav-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </span>
+      <span class="bottom-nav-label" data-i18n-key="navHome">Home</span>
+    </a>
+    <a href="services.html" class="bottom-nav-link" aria-label="Services">
+      <span class="bottom-nav-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </span>
+      <span class="bottom-nav-label" data-i18n-key="navServices">Services</span>
+    </a>
+    <a href="portfolio.html" class="bottom-nav-link" aria-label="Portfolio">
+      <span class="bottom-nav-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+      </span>
+      <span class="bottom-nav-label" data-i18n-key="navPortfolio">Portfolio</span>
+    </a>
+    <a href="profile.html" class="bottom-nav-link active" aria-label="Profile">
+      <span class="bottom-nav-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </span>
+      <span class="bottom-nav-label" data-i18n-key="navProfile">Profile</span>
+    </a>
+  </nav>
+
+  <script src="js/firebase-loader.js"></script>
+  <script>
+    // Firebase initialization for profile.html
+    const firebaseConfig = {
+      apiKey: "AIzaSyC6JxLzhNR5O9rggtyucTbY7DFGWpBnf2w",
+      authDomain: "zaun-tech.firebaseapp.com",
+      projectId: "zaun-tech",
+      storageBucket: "zaun-tech.firebasestorage.app",
+      messagingSenderId: "1049632365222",
+      appId: "1:1049632365222:web:b2bc3e0ab686018676b267"
+    };
+    
+    function initializeFirebase() {
+      if (window.firebase && !firebase.apps.length) {
+        console.log('Initializing Firebase in profile.html');
+        firebase.initializeApp(firebaseConfig);
+        window.firebaseAuth = firebase.auth();
+        window.firebaseDB = firebase.firestore();
+        
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+          .then(() => {
+            console.log('Persistence set to LOCAL in profile.html');
+          })
+          .catch(function(error) {
+            console.error("Error setting persistence in profile.html:", error);
+          });
+      } else if (window.firebase && firebase.apps.length) {
+        console.log('Firebase already initialized, setting auth and db');
+        window.firebaseAuth = firebase.auth();
+        window.firebaseDB = firebase.firestore();
+      }
+    }
+    
+    // Wait for Firebase to load
+    document.addEventListener('DOMContentLoaded', function() {
+      const checkFirebase = setInterval(() => {
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+          clearInterval(checkFirebase);
+          console.log('Firebase loaded, initializing');
+          initializeFirebase();
+          const script = document.createElement('script');
+          script.src = 'js/auth-guard.js';
+          document.body.appendChild(script);
+        }
+      }, 100);
+    });
+  </script>
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileForm = document.getElementById('profileForm');
+      const saveBtn = profileForm.querySelector('button[type="submit"]');
+      const signOutBtn = document.getElementById('signOutBtn');
+
+      // Save user to Firestore on page load
+      function checkAndSaveUser() {
+        if (window.firebaseAuth) {
+          window.firebaseAuth.onAuthStateChanged((user) => {
+            if (user) {
+              console.log('Current user:', user);
+              saveUserToFirestore(user);
+              
+              // Populate form fields with user data
+              const profileEmail = document.getElementById('profileEmail');
+              if (profileEmail) {
+                console.log('User object:', user);
+                console.log('User email:', user.email);
+                console.log('User providerData:', user.providerData);
+                
+                // Try to get email from user.email or providerData
+                let email = user.email;
+                if (!email && user.providerData && user.providerData.length > 0) {
+                  const provider = user.providerData[0];
+                  console.log('Provider:', provider);
+                  email = provider.email || '—';
+                }
+                
+                profileEmail.value = email;
+                console.log('Profile email set to:', email);
+              }
+              
+              // Load user data from Firestore to populate other fields
+              loadUserData(user);
+            } else {
+              console.log('No current user found');
+            }
+          });
+        } else {
+          console.log('Firebase Auth not initialized yet, retrying...');
+          setTimeout(checkAndSaveUser, 500);
+        }
+      }
+      
+      async function loadUserData(user) {
+        try {
+          const db = firebase.firestore();
+          const userRef = db.collection('users').doc(user.uid);
+          const doc = await userRef.get();
+          
+          if (doc.exists) {
+            const userData = doc.data();
+            const profileName = document.getElementById('profileName');
+            const profilePhone = document.getElementById('profilePhone');
+            const profileTelegram = document.getElementById('profileTelegram');
+            const profileContactEmail = document.getElementById('profileContactEmail');
+            
+            if (profileName && userData.displayName) {
+              profileName.value = userData.displayName;
+            }
+            if (profilePhone && userData.phone) {
+              profilePhone.value = userData.phone;
+            }
+            if (profileTelegram && userData.telegram) {
+              profileTelegram.value = userData.telegram;
+            }
+            if (profileContactEmail && userData.contactEmail) {
+              profileContactEmail.value = userData.contactEmail;
+            }
+          }
+        } catch (error) {
+          console.error('Error loading user data:', error);
+        }
+      }
+      
+      checkAndSaveUser();
+
+      async function saveUserToFirestore(user) {
+        try {
+          console.log('saveUserToFirestore called with user:', user);
+          
+          if (!firebase.firestore) {
+            console.warn('Firestore not initialized');
+            return;
+          }
+          
+          if (!user || !user.uid) {
+            console.error('Cannot save user: User UID is missing');
+            return;
+          }
+          
+          console.log('User UID:', user.uid);
+          console.log('User email:', user.email);
+          
+          const db = firebase.firestore();
+          const userRef = db.collection('users').doc(user.uid);
+          
+          console.log('Checking if user exists in Firestore...');
+          // Check if user already exists
+          const doc = await userRef.get();
+          if (doc.exists) {
+            console.log('User already exists in Firestore');
+            return;
+          }
+          
+          console.log('User does not exist, saving to Firestore...');
+          // Save user data
+          await userRef.set({
+            email: user.email,
+            displayName: user.displayName || user.email,
+            uid: user.uid,
+            createdAt: new Date().toISOString(),
+            emailVerified: user.emailVerified || false
+          });
+          
+          console.log('User saved to Firestore successfully');
+        } catch (e) {
+          console.error('Error saving user to Firestore:', e);
+          console.error('Error details:', e.message, e.code);
+        }
+      }
+
+      // Profile form submission with loading state
+      profileForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const lang = localStorage.getItem('language') || 'en';
+        const savingText = lang === 'ar' ? 'جاري الحفظ...' : 'Saving...';
+        
+        const phone = document.getElementById('profilePhone').value;
+        const telegram = document.getElementById('profileTelegram').value;
+        
+        // Validate that at least phone or telegram is provided
+        if (!phone && !telegram) {
+          const errorDiv = document.getElementById('profileError');
+          errorDiv.textContent = lang === 'ar' ? 'الرجاء إدخال رقم الهاتف أو معرف تلغرام' : 'Please enter phone number or Telegram ID';
+          errorDiv.style.display = 'block';
+          return;
+        } else {
+          const errorDiv = document.getElementById('profileError');
+          errorDiv.style.display = 'none';
+        }
+        
+        loading.setButtonLoading(saveBtn, true);
+        
+        try {
+          const user = window.firebaseAuth?.currentUser;
+          if (!user) {
+            console.error('No user logged in');
+            loading.setButtonLoading(saveBtn, false);
+            return;
+          }
+          
+          const name = document.getElementById('profileName').value;
+          const email = document.getElementById('profileEmail').value;
+          const contactEmail = document.getElementById('profileContactEmail').value;
+          
+          const db = firebase.firestore();
+          const userRef = db.collection('users').doc(user.uid);
+          
+          // Update display name in Firebase Auth
+          await user.updateProfile({ displayName: name });
+          
+          // Update Firestore (contactEmail instead of email, no displayName)
+          await userRef.update({
+            contactEmail: contactEmail,
+            phone: phone,
+            telegram: telegram,
+            updatedAt: new Date().toISOString()
+          });
+          
+          console.log('Profile saved to Firestore');
+          
+          // Show success message
+          const successDiv = document.getElementById('profileSuccess');
+          successDiv.textContent = lang === 'ar' ? 'تم حفظ الملف الشخصي بنجاح' : 'Profile saved successfully';
+          successDiv.style.display = 'block';
+          
+          // Hide success message after 3 seconds
+          setTimeout(() => {
+            successDiv.style.display = 'none';
+          }, 3000);
+          
+          // Reset button state
+          loading.setButtonLoading(saveBtn, false);
+          
+        } catch (error) {
+          console.error('Error saving profile:', error);
+          const errorDiv = document.getElementById('profileError');
+          errorDiv.textContent = lang === 'ar' ? 'حدث خطأ أثناء حفظ الملف الشخصي' : 'Error saving profile';
+          errorDiv.style.display = 'block';
+          loading.setButtonLoading(saveBtn, false);
+        }
+      });
+
+      // Sign out button with loading state
+      signOutBtn.addEventListener('click', async function() {
+        const lang = localStorage.getItem('language') || 'en';
+        const loadingText = lang === 'ar' ? 'جاري تسجيل الخروج...' : 'Signing out...';
+        
+        loading.setButtonLoading(signOutBtn, true);
+        
+        try {
+          // Simulate sign out
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          
+          // Here you would add your actual sign out logic
+          window.location.href = 'index.html';
+          
+        } catch (error) {
+          console.error('Error signing out:', error);
+          loading.setButtonLoading(signOutBtn, false);
+        }
+      });
+    });
+  </script>
+  <script>
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(function(error) {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

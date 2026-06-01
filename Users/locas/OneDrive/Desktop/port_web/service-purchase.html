@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaun Tech — Request Service</title>
+    <meta
+      name="description"
+      content="Request a service from Zaun Tech and discuss support."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a href="index.html" class="brand" data-i18n-key="brand">Zaun Tech</a>
+        <div class="header-actions">
+          <div class="lang-picker">
+            <button id="languageToggle" class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false">EN</button>
+            <div id="languageMenu" class="lang-menu" aria-label="Choose language">
+              <button class="lang-option" data-lang="en" type="button">English</button>
+              <button class="lang-option" data-lang="ar" type="button">العربية</button>
+            </div>
+          </div>
+          <button type="button" class="mobile-nav-button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <div class="theme-picker">
+            <input id="themeToggle" class="theme-switch" type="checkbox" aria-label="Switch theme" />
+            <label class="theme-toggle" for="themeToggle">
+              <span class="theme-icon theme-sun">☀️</span>
+              <span class="theme-icon theme-moon">🌙</span>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="toggle-icon">☰</span>
+          <span class="toggle-label" data-i18n-key="navMenu">Menu</span>
+        </button>
+        <a href="index.html" class="nav-link" aria-label="Home">
+          <span class="nav-icon">⌂</span>
+          <span class="nav-label" data-i18n-key="navHome">Home</span>
+        </a>
+        <a href="services.html" class="nav-link" aria-label="Services">
+          <span class="nav-icon">⚙</span>
+          <span class="nav-label" data-i18n-key="navServices">Services</span>
+        </a>
+        <a href="dashboard.html" class="nav-link" aria-label="My project">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label" data-i18n-key="navDashboard">My project</span>
+        </a>
+        <a href="contact.html" class="nav-link" aria-label="Contact">
+          <span class="nav-icon">✉</span>
+          <span class="nav-label" data-i18n-key="navContact">Contact</span>
+        </a>
+      </nav>
+
+      <main>
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label" data-i18n-key="purchaseLabel">Purchase</p>
+            <h2 id="purchaseTitle" data-i18n-key="requestService">Request service</h2>
+            <p id="purchaseSubtitle" data-i18n-key="purchaseSubtitle">Submit a request and I will contact you to discuss your project and support.</p>
+          </div>
+          <div class="project-card">
+            <div class="detail-item">
+              <p class="section-label" data-i18n-key="serviceLabel">Service</p>
+              <h3 id="purchaseService">----</h3>
+            </div>
+            <p id="purchaseDesc" style="color:var(--text-secondary);"></p>
+            <div class="detail-item">
+              <p class="section-label" data-i18n-key="priceLabel">Price</p>
+              <p id="purchasePrice">----</p>
+            </div>
+            <form id="purchaseForm">
+              <div class="form-row">
+                <label for="purchaseName" data-i18n-key="nameLabel">Name</label>
+                <input id="purchaseName" name="purchaseName" type="text" data-i18n-placeholder="namePlaceholder" placeholder="Your name" required />
+              </div>
+              <div class="form-row">
+                <label for="purchaseEmail" data-i18n-key="emailLabel">Email</label>
+                <input id="purchaseEmail" name="purchaseEmail" type="email" data-i18n-placeholder="emailPlaceholder" placeholder="you@example.com" required />
+              </div>
+              <div class="form-row">
+                <label for="purchaseMessage">Request details</label>
+                <textarea id="purchaseMessage" name="purchaseMessage" placeholder="Describe your needs" rows="4"></textarea>
+              </div>
+              <div class="detail-actions">
+                <button type="submit" class="btn primary" data-i18n-key="buyNow">Request now</button>
+                <button type="button" class="btn secondary" id="purchaseBack" data-i18n-key="backButton">Back</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p data-i18n-key="footerText">&copy; 2026 Zaun Tech. Modern mobile and web development.</p>
+      </footer>
+    </div>
+    <script src="js/firebase-loader.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      // Set persistence to LOCAL to prevent automatic logout
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .catch(function(error) {
+              console.error("Error setting persistence:", error);
+            });
+        }
+      });
+    </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          if (typeof getPreferredTheme === 'function' && typeof applyTheme === 'function') {
+            applyTheme(getPreferredTheme());
+          }
+          if (typeof getPreferredLanguage === 'function' && typeof applyLanguage === 'function') {
+            applyLanguage(getPreferredLanguage());
+          }
+        });
+      </script>
+  </body>
+</html>
